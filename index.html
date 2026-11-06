@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Сияй PRO 2.0</title>
+<style>
+body{margin:0;background:linear-gradient(135deg,#fff1f7,#f1e5fa);font:16px Arial;color:#754d69;padding:18px}
+header{text-align:center;font-size:27px;color:#b66f9f;font-weight:bold;padding:15px}
+nav{display:flex;flex-wrap:wrap;gap:7px;justify-content:center}
+button{border:0;background:#f3d5e8;padding:12px;border-radius:15px;color:#754d69}
+section{background:#ffffffc9;padding:20px;margin:16px 0;border-radius:24px}
+h2{color:#b16b9b}
+label{display:block;padding:12px;border-bottom:1px solid #f2dfeb}
+input{accent-color:#d58ab6;width:18px;height:18px}
+.card{background:#fbedf6;padding:14px;border-radius:18px;margin:8px 0}
+a{color:#b16b9b}
+</style>
+</head>
+<body>
+<header>✧ Сияй PRO 2.0 🌸</header>
+<nav>
+<button onclick="go('home')">⌂ Главная</button>
+<button onclick="go('care')">🧴 Уход</button>
+<button onclick="go('habits')">🌿 Привычки</button>
+<button onclick="go('calendar')">📅 Календарь</button>
+<button onclick="go('goals')">🎯 Цели</button>
+<button onclick="go('shop')">♡ Магазин</button>
+<button onclick="go('profile')">🌷 Профиль</button>
+</nav>
+
+<section id="home">
+<h2>Ты прекрасна! ✨</h2>
+<p>Маленькие шаги — большая забота о себе.</p>
+<div class="card">🧴 <a href="#care">Мой уход</a></div>
+<div class="card">🌿 <a href="#habits">Мои привычки</a></div>
+<div class="card">📅 <a href="#calendar">Календарь</a></div>
+<div class="card">🎯 <a href="#goals">Мои цели</a></div>
+<h3>Задачи дня</h3>
+<label><input type="checkbox"> Утренний уход</label>
+<label><input type="checkbox"> Выпить воды</label>
+<label><input type="checkbox"> Вечерний уход</label>
+<label><input type="checkbox"> Записать настроение</label>
+</section>
+
+<section id="care">
+<h2>🧴 Мой уход</h2>
+<label><input type="checkbox"> Очищение лица</label>
+<label><input type="checkbox"> Увлажняющий крем</label>
+<label><input type="checkbox"> SPF</label>
+<label><input type="checkbox"> Вечернее очищение</label>
+<label><input type="checkbox"> Питательный крем</label>
+</section>
+
+<section id="habits">
+<h2>🌿 Привычки</h2>
+<label><input type="checkbox"> 💧 Вода</label>
+<label><input type="checkbox"> 🚶 Движение</label>
+<label><input type="checkbox"> 📖 Чтение</label>
+<label><input type="checkbox"> 🌙 Сон вовремя</label>
+</section>
+
+<section id="calendar">
+<h2>📅 Календарь</h2>
+<p id="month"></p>
+<div id="days" style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px"></div>
+</section>
+
+<section id="goals">
+<h2>🎯 Мои цели</h2>
+<div class="card">Забота о себе — 35%</div>
+<div class="card">Больше энергии — 20%</div>
+<h3>🏆 Достижения</h3>
+<div class="card">🌸 Первый шаг</div>
+<div class="card">✨ Сияющий день</div>
+</section>
+
+<section id="shop">
+<h2>♡ Журнал желаний</h2>
+<div class="card">🌷 Цветочная тема — 30 ✨</div>
+<div class="card">💫 Искры — 20 ✨</div>
+<div class="card">🌙 Лунная тема — 40 ✨</div>
+</section>
+
+<section id="profile">
+<h2>🌷 Мой профиль</h2>
+<h3 contenteditable="true">Моё имя (нажми, чтобы изменить)</h3>
+<div class="card">Мои достижения ✨</div>
+<div class="card">Настройки приложения</div>
+</section>
+
+<script>
+function go(id){
+document.getElementById(id).scrollIntoView({behavior:"smooth"});
+}
+document.querySelectorAll('input[type=checkbox]').forEach((c,i)=>{
+c.checked=localStorage.getItem("siyai"+i)==="1";
+c.onchange=()=>localStorage.setItem("siyai"+i,c.checked?"1":"0");
+});
+document.getElementById("month").textContent=
+new Date().toLocaleDateString("ru-RU",{month:"long",year:"numeric"});
+for(let i=1;i<=30;i++){
+let d=document.createElement("div");
+d.textContent=i;
+d.style.cssText="background:#fbedf6;padding:10px;text-align:center;border-radius:12px";
+document.getElementById("days").appendChild(d);
+}
+</script>
+</body>
+</html>
